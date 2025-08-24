@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Login = () => {
+  const { backendUrl, token, setToken } = useContext(AppContext);
+  const navigate = useNavigate();
   const [state, setState] = useState("Sign Up");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +14,12 @@ const Login = () => {
     event.preventDefault();
     console.log({ name, email, password });
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
@@ -21,7 +31,8 @@ const Login = () => {
           {state === "Sign Up" ? "Create Account" : "Login"}
         </h2>
         <p className="text-gray-500 text-sm mb-2">
-          Please {state === "Sign Up" ? "sign up" : "log in"} to book an appointment.
+          Please {state === "Sign Up" ? "sign up" : "log in"} to book an
+          appointment.
         </p>
 
         {state === "Sign Up" && (
