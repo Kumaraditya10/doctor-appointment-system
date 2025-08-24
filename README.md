@@ -1,0 +1,1 @@
+A full-stack doctor appointment booking system built with the MERN stack (MongoDB, Express.js, React, and Node.js). This platform allows patients to search doctors, view availability, book appointments securely, and manage their bookings, while doctors can manage schedules and patient consultations.
